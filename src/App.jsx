@@ -1,12 +1,14 @@
 import React from 'react';
-import classes from './App.css';
 import './Bootstrap/bootstrap.css';
 import './Bootstrap/bootstrap.min.css.map';
+import './App.css';
+import Layout from './components/Layout/Layout';
+
 function App() {
   return (
-    <div className="App">
-      <div className="container">Hello Pranta</div>
-    </div>
+      <Layout>
+        
+      </Layout>
   );
 }
 

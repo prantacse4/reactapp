@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Header.module.css";
-import logo from '../../assets/images/logo';
-import react from '../../assets/images/react';
+import logo from '../../assets/images/logo.svg';
+import react from '../../assets/images/react.svg';
 export const Header = () => {
     return (
         <header>
@@ -17,3 +17,5 @@ export const Header = () => {
         </header>
     );
 };
+
+export default Header

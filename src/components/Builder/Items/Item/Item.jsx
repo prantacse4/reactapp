@@ -1,9 +1,11 @@
 import React from "react";
 import classes from './Item.module.css';
-const Item = () => {
+const Item = ({name}) => {
+console.log(name);
+
     return (
         <li className={classes.item}>
-            <span>Vanilla</span>
+            <span>{name}</span>
             <span className={classes.quantity}>2</span>
             <div className="right">
                 <button type="button" className={[classes.plus, 'rounded' ].join(' ')}>

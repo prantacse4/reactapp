@@ -1,11 +1,15 @@
 import React from "react";
 import Item from "./Item/Item";
 
-const Items = () => {
+const Items = ({flavour}) => {
+    const allitem = Object.keys(flavour);
     return (
         <div>
             <ul>
-               <Item></Item>
+                { allitem.map((allitem) => (
+                    <Item key={allitem} name = {allitem}></Item>
+                ) ) }
+               
             </ul>
         </div>
     );

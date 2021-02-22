@@ -8,7 +8,7 @@ const IceCream = ({ items }) => {
         <div className={classes.icecream}>
             <p className={classes.cone}></p>
             {flavours.map((flavours) => (
-                <Scoop  key={flavours} scoop = {flavours} />
+                <Scoop  key={flavours}  scoop = {flavours} />
             ))}
             <div className={classes.cherry}></div>
         </div>

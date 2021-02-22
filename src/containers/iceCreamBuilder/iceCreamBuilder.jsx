@@ -7,20 +7,31 @@ export default class iceCreamBuilder extends Component {
         items : {
             vanilla : 45,
             chocolate : 50,
-            lemon : 35,
+            lemon : 350,
             orange : 40,
             strawberry: 60,
         },
         carts : [],
         totalPrice : 0,
     };
-    addtocard  = (cart) => {};
+    addtocard  = (cart) => {
+        const  {carts, items} = this.state;
+        const workCart = [...carts];
+        workCart.push(cart);
+
+
+        this.setState({
+            carts : workCart,
+            totalPrice: items[cart],
+        });
+
+    };
     render() {
-        const {items} = this.state;
+        const {items, totalPrice} = this.state;
         return (
             <div className={['container', classes.container].join(' ')}>
                 <IceCream items = {items}></IceCream>
-                <Builder items = {items}></Builder>
+                <Builder items = {items} price = {totalPrice} ></Builder>
             </div>
         );
     };

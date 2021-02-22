@@ -2,13 +2,13 @@ import React from "react";
 import classes from "./IceCream.module.css";
 import Scoop from "./Scoop/Scoop.jsx";
 
-const IceCream = ({ items }) => {
-    const flavours = Object.keys(items);
+const IceCream = ({ carts }) => {
+    console.log(carts);
     return (
         <div className={classes.icecream}>
             <p className={classes.cone}></p>
-            {flavours.map((flavours) => (
-                <Scoop  key={flavours}  scoop = {flavours} />
+            {carts.map((cart) => (
+                <Scoop  key={`${cart}${Math.random()}`}  scoop = {cart} />
             ))}
             <div className={classes.cherry}></div>
         </div>

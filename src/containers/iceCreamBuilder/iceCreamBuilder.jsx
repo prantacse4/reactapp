@@ -14,24 +14,40 @@ export default class iceCreamBuilder extends Component {
         carts : [],
         totalPrice : 0,
     };
-    addtocard  = (cart) => {
+    addCart  = (cart) => {
         const  {carts, items} = this.state;
         const workCart = [...carts];
         workCart.push(cart);
 
+        this.setState((prevState) => {
+            return{
+                carts : workCart,
+                totalPrice: prevState.totalPrice + items[cart],
+            };
+        });
 
-        this.setState({
-            carts : workCart,
-            totalPrice: items[cart],
+    };
+
+    removeCart  = (cart) => {
+        const  {carts, items} = this.state;
+        const workCart = [...carts];
+        const cartIndex =   workCart.findIndex((cIndex)=> cIndex === cart);
+        workCart.splice(cartIndex, 1);
+
+        this.setState((prevState) => {
+            return{
+                carts : workCart,
+                totalPrice: prevState.totalPrice - items[cart],
+            };
         });
 
     };
     render() {
-        const {items, totalPrice} = this.state;
+        const {items, totalPrice, carts} = this.state;
         return (
             <div className={['container', classes.container].join(' ')}>
-                <IceCream items = {items}></IceCream>
-                <Builder items = {items} price = {totalPrice} ></Builder>
+                <IceCream carts = {carts}></IceCream>
+                <Builder items = {items} price = {totalPrice} add = {this.addCart} remove = {this.removeCart}></Builder>
             </div>
         );
     };

@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "./Item/Item";
 
-const Items = ({flavour}) => {
+const Items = ({flavour, add, remove}) => {
     const allitem = Object.keys(flavour);
 
 
@@ -9,7 +9,7 @@ const Items = ({flavour}) => {
         <div>
             <ul>
                 { allitem.map((allitem) => (
-                    <Item key={allitem} name = {allitem} allitems = {flavour}></Item>
+                    <Item key={allitem} name = {allitem} allitems = {flavour} add = {add} remove = {remove}></Item>
                 ) ) }
                
             </ul>

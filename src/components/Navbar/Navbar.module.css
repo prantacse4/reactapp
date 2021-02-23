@@ -1,0 +1,34 @@
+.NavUl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+  }
+  
+  .NavUl li {
+    float: left;
+  }
+  .NavUl li>a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .NavUl li>a:hover {
+    color: white;
+    background-color: #4CAF50;
+    transition: all .3s ease;
+  }
+  
+
+
+  .active  {
+    color: white  !important;
+    background-color: #4CAF50;
+  }
+  
+
+  

@@ -1,11 +1,18 @@
 import React from "react";
 import classes from './Item.module.css';
-const Item = ({name, allitems, add, remove}) => {
-
+import {countBy} from 'lodash';
+const Item = ({name, allitems, add, remove, carts}) => {
+    const counterCart = countBy(carts);
+    const countCart = counterCart[name];
+    var count = 0;
+    if (countCart >0) {
+        count = countCart;
+    };
+    console.log(name);
     return (
         <li className={classes.item}>
             <span>{name} - Price: {allitems[name]} Taka</span>
-            <span className={classes.quantity}>2</span>
+            <span className={classes.quantity}>{count}</span>
             <div className="right">
                 <button type="button" onClick={add.bind(this, name)} className={[classes.plus, 'rounded' ].join(' ')} >
                     +

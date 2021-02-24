@@ -8,7 +8,6 @@ const Item = ({name, allitems, add, remove, carts}) => {
     if (countCart >0) {
         count = countCart;
     };
-    console.log(name);
     return (
         <li className={classes.item}>
             <span>{name} - Price: {allitems[name]} Taka</span>

@@ -3,7 +3,6 @@ import classes from "./IceCream.module.css";
 import Scoop from "./Scoop/Scoop.jsx";
 
 const IceCream = ({ carts }) => {
-    console.log(carts);
     return (
         <div className={classes.icecream}>
             <p className={classes.cone}></p>

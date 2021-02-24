@@ -39,19 +39,26 @@ export default class iceCreamBuilder extends Component {
         });
     };
 
-    removeCart = (cart) => {
-        const { carts, items } = this.state;
-        const workCart = [...carts];
-        const cartIndex = workCart.findIndex((cIndex) => cIndex === cart);
-        workCart.splice(cartIndex, 1);
 
-        this.setState((prevState) => {
-            return {
-                carts: workCart,
-                totalPrice: prevState.totalPrice - items[cart],
-            };
-        });
+    removeCart  = (cart) => {
+        const  {carts, items} = this.state;
+        const workCart = [...carts];
+        const cartIndex =   workCart.findIndex((cIndex)=> cIndex === cart);
+        if( cartIndex >= 0 ){
+            workCart.splice(cartIndex, 1);
+            this.setState((prevState) => {
+                return{
+                    carts : workCart,
+                    totalPrice: prevState.totalPrice - items[cart],
+                };
+            });
+        }
+ 
     };
+
+
+
+
     render() {
         const { items, totalPrice, carts } = this.state;
         return (

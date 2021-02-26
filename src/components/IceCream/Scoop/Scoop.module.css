@@ -23,27 +23,27 @@
     margin-bottom: 0px;
   }
   
-  .chocolate,
-  .chocolate::after {
+  .Chocolate,
+  .Chocolate::after {
     background: #b98160;
   }
   
-  .vanilla,
-  .vanilla::after {
+  .Vanilla,
+  .Vanilla::after {
     background: #fae8b6;
   }
   
-  .strawberry,
-  .strawberry::after {
+  .Strawberry,
+  .Strawberry::after {
     background: pink;
   }
   
-  .orange,
-  .orange::after {
+  .Orange,
+  .Orange::after {
     background: orange;
   }
   
-  .lemon,
-  .lemon::after {
+  .Lemon,
+  .Lemon::after {
     background: #5fd592;
   }

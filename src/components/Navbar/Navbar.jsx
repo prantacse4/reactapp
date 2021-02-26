@@ -8,7 +8,6 @@ import {
   } from "react-router-dom";
 import DependentSelectExample from "../DependentSelectExample/DependentSelectExample";
   import classes from './Navbar.module.css';
-  
 const Navbar = () => {
     return (
         <div>

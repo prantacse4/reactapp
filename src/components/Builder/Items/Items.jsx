@@ -4,7 +4,6 @@ import Item from "./Item/Item";
 const Items = ({flavour, add, remove, carts}) => {
     const allitem = Object.keys(flavour);
 
-
     return (
         <div>
             <ul>

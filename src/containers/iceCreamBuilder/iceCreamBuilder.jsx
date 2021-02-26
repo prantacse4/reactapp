@@ -5,26 +5,16 @@ import Builder from "../../components/Builder/Builder";
 export default class iceCreamBuilder extends Component {
     state = {
         items: {
-            vanilla: 45,
-            chocolate: 50,
-            lemon: 350,
-            orange: 40,
-            strawberry: 60,
+            Vanilla: 45,
+            Chocolate: 50,
+            Lemon: 350,
+            Orange: 40,
+            Strawberry: 60,
         },
         carts: [],
         totalPrice: 0,
     };
 
-
-    // componentDidMount(){
-    //     fetch('ApiUrl')
-    //         .then((response) => response.json())
-    //         .then((responseData) =>{
-    //                 this.setState({
-    //                     items: responseData,
-    //                 });
-    //         });
-    // };
 
     addCart = (cart) => {
         const { carts, items } = this.state;

@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Item.module.css';
+
 import {countBy} from 'lodash';
 const Item = ({name, allitems, add, remove, carts}) => {
     const counterCart = countBy(carts);
@@ -8,6 +9,7 @@ const Item = ({name, allitems, add, remove, carts}) => {
     if (countCart >0) {
         count = countCart;
     };
+
     return (
         <li className={classes.item}>
             <span>{name} - Price: {allitems[name]} Taka</span>

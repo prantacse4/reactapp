@@ -36,7 +36,7 @@ const handleFormSubmit = (event) => {
                     value={user.username}
                     onChange={handleInputChange}
                    />
-                <button className={['btn', 'btn-success', 'mt-3'].join(' ')}>Add new user </button>
+                <button className={['btn', 'btn-success', 'mt-3'].join(' ')}>Add</button>
                 </form>
         </div>
     )

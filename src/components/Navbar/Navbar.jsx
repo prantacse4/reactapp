@@ -22,7 +22,7 @@ const Navbar = () => {
                     <NavLink  activeClassName={classes.active} exact to="/DependentSelectExample">DependentSelectExample</NavLink>
                 </li>
                 <li>
-                    <NavLink  activeClassName={classes.active} exact to="/lkj">IceCream</NavLink>
+                    <NavLink  activeClassName={classes.active} exact to="/CrudHome">CrudHome</NavLink>
                 </li>
                 <li>
                     <NavLink  activeClassName={classes.active} to="/j">IceCream</NavLink>

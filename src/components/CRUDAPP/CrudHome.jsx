@@ -58,7 +58,7 @@ const CrudHome = () => {
     return (
         <div>
             <div className="container-fluid">
-                <h1 className={['card','card-header','bg-info','text-white','text-center']}>Crud Using React Hooks</h1> <br />
+                <h1 className={['card','card-header','bg-info','text-white','text-center'].join(' ')}>Crud Using React Hooks</h1> <br />
                 <div className="row">
                     <div className="col-md-4">
                         {editing ? (

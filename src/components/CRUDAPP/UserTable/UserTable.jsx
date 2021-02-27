@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-const UserTable = ({ users, deleteID }) => {
+const UserTable = ({ users, deleteID, editRow }) => {
     const totaluser = users.length;
 
 
@@ -23,7 +23,7 @@ const UserTable = ({ users, deleteID }) => {
                             <td>{user.name}</td>
                             <td>{user.username}</td>
                             <td>
-                                <button className={['btn', 'btn-info'].join(' ')}>
+                                <button className={['btn', 'btn-info'].join(' ')} onClick={() => editRow(user)} >
                                     Edit
                                 </button>
                                 <button onClick={() => deleteID(user.id)} className={['btn', 'btn-danger', 'ml-1'].join(' ')}>

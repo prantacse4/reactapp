@@ -6,9 +6,10 @@ const AddUserForm = (addUser) => {
   
     const handleInputChange = (event) => {
       const { name, value } = event.target
-  
       setUser({ ...user, [name]: value })
     }
+
+
 
 const handleFormSubmit = (event) => {
     event.preventDefault()

@@ -2,12 +2,25 @@ import React, { useState } from "react";
 import AddCartForm from "./AddCartForm/AddCartForm.jsx";
 import EditCartForm from "./EditCartForm/EditCartForm.jsx";
 import CartTable from "./CartTable/CartTable.jsx";
-
 const ImsAppHome = () => {
     const usersData = [
         { id: 1, name: "Pranta", username: "prantacse4" },
         { id: 2, name: "Arman", username: "gachpagol" },
         { id: 3, name: "Ripon ", username: "pabnaferot" },
+    ];
+
+    const category = [
+        {id:1, category:"Mobile"},
+        {id:2, category:"Camera"},
+        {id:3, category:"Electronics"},
+        {id:4, category:"Laptops"},
+    ];
+
+    const products = [
+        {id:1, product:"Samsung J7", category:1},
+        {id:2, product:"Samsung J7 Prime", category:1},
+        {id:3, product:"Nokia 5", category:1},
+        {id:4, product:"Canon 600D", category:2},
     ];
     const [users, setUsers] = useState(usersData);
 
@@ -15,10 +28,7 @@ const ImsAppHome = () => {
         user.id = users.length + 1;
         setUsers([...users, user]);
     };
-    const deleteUser = (id) => {
-        console.log(id);
-        // setUsers(users.filter((user) => user.id !== id))
-    };
+
 
     const deleteData = (id) => {
         //Procedure 1
@@ -63,7 +73,7 @@ const ImsAppHome = () => {
                     <div className="col-md-4">
                         {editing ? (
                             <div>
-                                <h2>Edit User</h2>
+                                <h2>Edit Cart</h2>
                                 <EditCartForm
                                     setEditing={setEditing}
                                     currentUser={currentUser}
@@ -72,16 +82,16 @@ const ImsAppHome = () => {
                             </div>
                         ) : (
                             <div>
-                                <h2>Add User</h2>
-                                <AddCartForm addUser={addUser} />
+                                <h2>Add to Cart</h2>
+                                <AddCartForm addUser={addUser} category={category} products={products} />
                             </div>
                         )}
                     </div>
                     <div className="col-md-8">
-                        <h2>View User</h2>
+                        <h2>View Cart</h2>
                         <CartTable
                             users={users}
-                            deleteUser={deleteUser}
+                            
                             deleteID={deleteData}
                             editRow={editRow}
                         />

@@ -11,6 +11,7 @@ import  './Bootstrap/bootstrap.min.css.map';
 import DependentSelectExample from "./components/DependentSelectExample/DependentSelectExample";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CrudHome from "./components/CRUDAPP/CrudHome";
+import ImsAppHome from "./components/IMSAPP/ImsAppHome";
 
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
                     <Route path='/DependentSelectExample' component={DependentSelectExample}/>
                     <Route path='/CrudHome'>
                         <CrudHome></CrudHome>
+                    </Route>
+
+                    <Route path='/ImsApp'>
+                        <ImsAppHome></ImsAppHome>
                     </Route>
                     
                     

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Select from "react-select";
 
-const AddCartForm = (addUser) => {
+const AddCartForm = ( {addUser, category, products}) => {
     const initialFormState = { id: null, name: "", username: "" };
     const [user, setUser] = useState(initialFormState);
 
@@ -12,13 +13,35 @@ const AddCartForm = (addUser) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         if (!user.name || !user.username) return;
-        addUser.addUser(user);
+        addUser(user);
         setUser(initialFormState);
     };
+
+
+ const optionsCategory  = 
+    category.map((cat) => (
+        { label: cat.category, value: cat.id }
+    ));
+
+    const optionsProducts  = 
+    products.map((pro) => (
+        { label: pro.product, value: pro.id }
+    ));
+
+      
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
-                <label className="form-control-label">Name {user.name}</label>
+            <label className={["form-control-label", "mt-3"].join(" ")}>Category</label>
+                <Select placeholder="Select Category" 
+                options = {optionsCategory}
+                />
+
+<label className={["form-control-label", "mt-3"].join(" ")}>Product</label>
+                <Select placeholder="Select Product" 
+                options = {optionsProducts}
+                />
+                <label className={["form-control-label", "mt-3"].join(" ")}>Name {user.name}</label>
                 <input
                     type="text"
                     className="form-control"

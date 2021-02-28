@@ -8,14 +8,12 @@ const DependentSelectExample = () => {
     const [lang, setLang] = useState(null);
     const [langList, setLangList] = useState([]);
     const [link, setLink] = useState("");
-  
     // handle change event of the country dropdown
     const handleCountryChange = (obj) => {
       setCountry(obj);
       setLangList(obj.languages);
       setLang(null);
     };
-    
     // handle change event of the language dropdown
     const handleLanguageChange = (obj) => {
       setLang(obj);

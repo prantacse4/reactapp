@@ -4,6 +4,8 @@ import Select from "react-select";
 const AddCartForm = ( {addUser, category, products}) => {
     const initialFormState = { id: null, name: "", username: "" };
     const [user, setUser] = useState(initialFormState);
+    const initState = products;
+    const [product, setProducts] = useState(initState);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -24,10 +26,18 @@ const AddCartForm = ( {addUser, category, products}) => {
     ));
 
     const optionsProducts  = 
-    products.map((pro) => (
+    product.map((pro) => (
         { label: pro.product, value: pro.id }
     ));
+    
+    
 
+    const handleCategoryChange = (data) => {
+        const dataID = data.value;
+        const productsdet =  products.filter((pro) => (pro.category === dataID));
+        setProducts(productsdet);
+        
+      };
       
     return (
         <div>
@@ -35,6 +45,7 @@ const AddCartForm = ( {addUser, category, products}) => {
             <label className={["form-control-label", "mt-3"].join(" ")}>Category</label>
                 <Select placeholder="Select Category" 
                 options = {optionsCategory}
+                onChange={handleCategoryChange}
                 />
 
 <label className={["form-control-label", "mt-3"].join(" ")}>Product</label>

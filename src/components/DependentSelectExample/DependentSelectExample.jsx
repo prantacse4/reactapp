@@ -3,11 +3,15 @@ import Select from "react-select";
 import data from './data.json';
 
 const DependentSelectExample = () => {
-
+    
     const [country, setCountry] = useState(null);
     const [lang, setLang] = useState(null);
     const [langList, setLangList] = useState([]);
     const [link, setLink] = useState("");
+    console.log(country);
+    console.log(lang);
+    console.log(langList);
+    console.log(link);
     // handle change event of the country dropdown
     const handleCountryChange = (obj) => {
       setCountry(obj);

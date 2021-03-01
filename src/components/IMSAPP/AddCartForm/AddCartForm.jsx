@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import Select from "react-select";
 
-const AddCartForm = ( {addUser, category, products}) => {
+const AddCartForm = ({ addUser, category, products }) => {
     const initialFormState = { id: null, name: "", username: "" };
     const [user, setUser] = useState(initialFormState);
-    const initState = products;
-    const [product, setProducts] = useState(initState);
+
+
+    const [categoryHook, setCategory] = useState([]);
+    const [pro, setPro] = useState(null);
+    const [ProductList, setProductList] = useState([]);
+    const nullState = [];
+    
+
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -19,40 +25,55 @@ const AddCartForm = ( {addUser, category, products}) => {
         setUser(initialFormState);
     };
 
+    const optionsCategory = category.map((cat) => ({
+        label: cat.category,
+        value: cat.id,
+    }));
 
- const optionsCategory  = 
-    category.map((cat) => (
-        { label: cat.category, value: cat.id }
-    ));
+    
 
-    const optionsProducts  = 
-    product.map((pro) => (
-        { label: pro.product, value: pro.id }
-    ));
-    
-    
+    const optionsProducts = ProductList.map((pro) => ({
+        label: pro.product,
+        value: pro.id,
+    }));
 
     const handleCategoryChange = (data) => {
+        setCategory(data);
         const dataID = data.value;
-        const productsdet =  products.filter((pro) => (pro.category === dataID));
-        setProducts(productsdet);
-        
+        const productsdet = products.filter((pro) => pro.category === dataID);
+        const productCopy = [...productsdet];
+        setProductList(productCopy);
+        setPro(null); 
+    };
+
+    const handleProductChange = (data) => {
+        setPro(data);
       };
-      
+
+
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
-            <label className={["form-control-label", "mt-3"].join(" ")}>Category</label>
-                <Select placeholder="Select Category" 
-                options = {optionsCategory}
-                onChange={handleCategoryChange}
+                <label className={["form-control-label", "mt-3"].join(" ")}>
+                    Category
+                </label>
+                <Select
+                    placeholder="Select Category"
+                    options={optionsCategory}
+                    onChange={handleCategoryChange}
                 />
 
-<label className={["form-control-label", "mt-3"].join(" ")}>Product</label>
-                <Select placeholder="Select Product" 
-                options = {optionsProducts}
+                <label className={["form-control-label", "mt-3"].join(" ")}>
+                    Product
+                </label>
+                <Select
+                    placeholder="Select Product"
+                    options={optionsProducts}
+                    onChange={handleProductChange}
                 />
-                <label className={["form-control-label", "mt-3"].join(" ")}>Name {user.name}</label>
+                <label className={["form-control-label", "mt-3"].join(" ")}>
+                    Name {user.name}
+                </label>
                 <input
                     type="text"
                     className="form-control"

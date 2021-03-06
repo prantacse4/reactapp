@@ -44,7 +44,9 @@ const AddCartForm = ({ addUser, category, products }) => {
         const productCopy = [...productsdet];
         setProductList(productCopy);
         setPro(null); 
+
     };
+
 
     const handleProductChange = (data) => {
         setPro(data);
@@ -57,7 +59,7 @@ const AddCartForm = ({ addUser, category, products }) => {
                 <label className={["form-control-label", "mt-3"].join(" ")}>
                     Category
                 </label>
-                <Select
+                <Select key={1}
                     placeholder="Select Category"
                     options={optionsCategory}
                     onChange={handleCategoryChange}
@@ -66,10 +68,12 @@ const AddCartForm = ({ addUser, category, products }) => {
                 <label className={["form-control-label", "mt-3"].join(" ")}>
                     Product
                 </label>
-                <Select
+                <Select key={2}
                     placeholder="Select Product"
                     options={optionsProducts}
+                    value={pro}
                     onChange={handleProductChange}
+                    
                 />
                 <label className={["form-control-label", "mt-3"].join(" ")}>
                     Name {user.name}

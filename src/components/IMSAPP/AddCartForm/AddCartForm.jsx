@@ -6,10 +6,13 @@ const AddCartForm = ({ addUser, category, products }) => {
     const [user, setUser] = useState(initialFormState);
 
 
-    const [categoryHook, setCategory] = useState([]);
+    const [categoryHook, setCategory] = useState(null);
     const [pro, setPro] = useState(null);
     const [ProductList, setProductList] = useState([]);
-    const nullState = [];
+    const nullState = [
+        { id:null, category:"", product:"" },
+    ];
+    const [selectedPro, setSelectedPro] = useState(nullState);
     
 
 
@@ -50,6 +53,9 @@ const AddCartForm = ({ addUser, category, products }) => {
 
     const handleProductChange = (data) => {
         setPro(data);
+        console.log(data.label);
+        console.log(categoryHook.label);
+        
       };
 
 

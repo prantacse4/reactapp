@@ -64,7 +64,7 @@ const CartTable = ({ users, deleteID, editRow, mycarts }) => {
                     ))
                 ):(
                     <tr>
-                        <td colSpan={4} className="text-center">No users</td>
+                        <td colSpan={8} className="text-center">No Data</td>
                     </tr>
                 )
                     }

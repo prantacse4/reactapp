@@ -32,11 +32,11 @@ const ImsAppHome = () => {
 
     const addToCart = (mycartData) => {
         console.log("------------");
-        console.log(mycartData);
+        // console.log(mycartData);
         mycartData.id = mycarts.length + 1;
         console.log(mycartData);
         setMycarts([...mycarts, mycartData]);
-        console.log(mycarts);
+        // console.log(mycarts);
     };
 
 

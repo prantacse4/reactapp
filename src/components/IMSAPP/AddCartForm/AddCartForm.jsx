@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import Select from "react-select";
 
-const AddCartForm = ({ addUser, category, products }) => {
+const AddCartForm = ({ addUser, category, products, addToCart }) => {
     const initialFormState = { id: null, name: "", username: "" };
     const [user, setUser] = useState(initialFormState);
 
+    const initialcartState = {id:null, category:"", product:"",price:"",qty:""};
+    const [mycart, setMycart] = useState(initialcartState);
 
+    const initPriceQty = {price:"",qty:""};
+    const [PriceQty, setPriceQty] = useState(initPriceQty);
+
+    const initPrice = {price:""};
+    const [Price, setPrice] = useState(initPrice);
+
+
+
+    const [productSelectorView, setproductSelectorView] = useState(null);
+    const [catSelectorView, setcatSelectorView] = useState(null);
     const [categoryHook, setCategory] = useState(null);
     const [pro, setPro] = useState(null);
     const [ProductList, setProductList] = useState([]);
@@ -15,18 +27,18 @@ const AddCartForm = ({ addUser, category, products }) => {
     const [selectedPro, setSelectedPro] = useState(nullState);
     
 
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setUser({ ...user, [name]: value });
-    };
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        if (!user.name || !user.username) return;
-        addUser(user);
-        setUser(initialFormState);
-    };
+    // const handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setUser({ ...mycart, [name]: value });
+    // };
+    
+    // const handleFormSubmit = (event) => {
+    //     event.preventDefault();
+    //     if (!user.name || !user.username) return;
+    //     addUser(user);
+    //     setUser(initialFormState);
+    // };
+    
 
     const optionsCategory = category.map((cat) => ({
         label: cat.category,
@@ -38,6 +50,7 @@ const AddCartForm = ({ addUser, category, products }) => {
     const optionsProducts = ProductList.map((pro) => ({
         label: pro.product,
         value: pro.id,
+        price:pro.price,
     }));
 
     const handleCategoryChange = (data) => {
@@ -54,16 +67,47 @@ const AddCartForm = ({ addUser, category, products }) => {
     const handleProductChange = (data) => {
         setPro(data);
         console.log(data.label);
-        console.log(categoryHook.label);
         
+        console.log(categoryHook.label);
+        const testProduct = categoryHook.label;
+        setcatSelectorView(testProduct);
+
+        const testCategory = data.label;
+        setproductSelectorView(testCategory);
+
+        const proPrice = data.price;
+        setPrice({...Price, price:proPrice});
       };
+
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setPriceQty({ ...PriceQty, [name]: value });
+    };
+
+    const handlePriceChange = (data) => {
+        const { name, value } = data.target;
+        setPrice({ ...Price, [name]: value });
+    };
+
+      const handleFormSubmit = (event) => {
+        event.preventDefault();
+        if (!Price.price || !PriceQty.qty || !catSelectorView || !productSelectorView) return;
+        const getCat = catSelectorView;
+        const getPro = productSelectorView;
+        const getPrice = Price.price;
+        const getQty = PriceQty.qty;
+        setMycart({...mycart, category:getCat, product:getPro, price:getPrice, qty:getQty});
+        console.log(mycart);
+        addToCart(mycart);
+        // setMycart(initialcartState);
+    };
 
 
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
                 <label className={["form-control-label", "mt-3"].join(" ")}>
-                    Category
+                    Category - {catSelectorView}
                 </label>
                 <Select key={1}
                     placeholder="Select Category"
@@ -72,33 +116,34 @@ const AddCartForm = ({ addUser, category, products }) => {
                 />
 
                 <label className={["form-control-label", "mt-3"].join(" ")}>
-                    Product
+                    Product - {productSelectorView}
                 </label>
                 <Select key={2}
                     placeholder="Select Product"
                     options={optionsProducts}
                     value={pro}
+                    price = {null}
                     onChange={handleProductChange}
                     
                 />
                 <label className={["form-control-label", "mt-3"].join(" ")}>
-                    Name {user.name}
+                    Price {Price.price}
                 </label>
                 <input
                     type="text"
                     className="form-control"
-                    name="name"
-                    value={user.name}
-                    onChange={handleInputChange}
+                    name="price"
+                    value={Price.price}
+                    onChange={handlePriceChange}
                 />
                 <label className={["form-control-label", "mt-3"].join(" ")}>
-                    Username {user.username}
+                    Qty {PriceQty.qty}
                 </label>
                 <input
                     type="text"
                     className="form-control"
-                    name="username"
-                    value={user.username}
+                    name="qty"
+                    value={PriceQty.qty}
                     onChange={handleInputChange}
                 />
                 <button className={["btn", "btn-success", "mt-3"].join(" ")}>

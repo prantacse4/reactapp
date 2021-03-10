@@ -8,7 +8,7 @@ const ImsAppHome = () => {
         { id: 2, name: "Arman", username: "gachpagol" },
         { id: 3, name: "Ripon ", username: "pabnaferot" },
     ];
-
+    const mycart = []
     const category = [
         {id:1, category:"Mobile"},
         {id:2, category:"Camera"},
@@ -17,16 +17,26 @@ const ImsAppHome = () => {
     ];
 
     const products = [
-        {id:1, product:"Samsung J7", category:1},
-        {id:2, product:"Samsung J7 Prime", category:1},
-        {id:3, product:"Nokia 5", category:1},
-        {id:4, product:"Canon 600D", category:2},
+        {id:1, product:"Samsung J7", price:18500, category:1},
+        {id:2, product:"Samsung J7 Prime",price:22500, category:1},
+        {id:3, product:"Nokia 5",price:17500, category:1},
+        {id:4, product:"Canon 600D",price:48000, category:2},
     ];
     const [users, setUsers] = useState(usersData);
+    const [mycarts, setMycarts] = useState(mycart);
 
     const addUser = (user) => {
         user.id = users.length + 1;
         setUsers([...users, user]);
+    };
+
+    const addToCart = (mycartData) => {
+        console.log("------------");
+        console.log(mycartData);
+        mycartData.id = mycarts.length + 1;
+        console.log(mycartData);
+        setMycarts([...mycarts, mycartData]);
+        console.log(mycarts);
     };
 
 
@@ -83,7 +93,7 @@ const ImsAppHome = () => {
                         ) : (
                             <div>
                                 <h2>Add to Cart</h2>
-                                <AddCartForm addUser={addUser} category={category} products={products} />
+                                <AddCartForm addUser={addUser} addToCart={addToCart} category={category} products={products} />
                             </div>
                         )}
                     </div>
@@ -91,6 +101,7 @@ const ImsAppHome = () => {
                         <h2>View Cart</h2>
                         <CartTable
                             users={users}
+                            mycarts={mycarts}
                             
                             deleteID={deleteData}
                             editRow={editRow}

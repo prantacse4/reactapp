@@ -42,15 +42,13 @@ const ImsAppHome = () => {
         setMycarts(data);
 
         //Procedure 2
-
         // const cartIndex = mycarts.findIndex((mycart) => mycart.id === id);
-
         // if (cartIndex >= 0) {
         //     const cartDataCopy = [...mycarts];
         //     cartDataCopy.splice(cartIndex, 1);
         //     setMycarts(cartDataCopy);
         // }
-        
+
     };
 
     const [editing, setEditing] = useState(false);

@@ -31,29 +31,26 @@ const ImsAppHome = () => {
     };
 
     const addToCart = (mycartData) => {
-        console.log("------------");
-        // console.log(mycartData);
         mycartData.id = mycarts.length + 1;
-        console.log(mycartData);
         setMycarts([...mycarts, mycartData]);
-        // console.log(mycarts);
     };
 
 
     const deleteData = (id) => {
         //Procedure 1
-        const data = users.filter((user) => user.id !== id);
-        // console.log(data);
-        // setUsers(data);
+        const data = mycarts.filter((user) => user.id !== id);
+        setMycarts(data);
 
         //Procedure 2
 
-        const UserIndex = users.findIndex((user) => user.id === id);
-        if (UserIndex >= 0) {
-            const usersCopy = [...users];
-            usersCopy.splice(UserIndex, 1);
-            setUsers(usersCopy);
-        }
+        // const cartIndex = mycarts.findIndex((mycart) => mycart.id === id);
+
+        // if (cartIndex >= 0) {
+        //     const cartDataCopy = [...mycarts];
+        //     cartDataCopy.splice(cartIndex, 1);
+        //     setMycarts(cartDataCopy);
+        // }
+        
     };
 
     const [editing, setEditing] = useState(false);
@@ -102,7 +99,6 @@ const ImsAppHome = () => {
                         <CartTable
                             users={users}
                             mycarts={mycarts}
-                            
                             deleteID={deleteData}
                             editRow={editRow}
                         />

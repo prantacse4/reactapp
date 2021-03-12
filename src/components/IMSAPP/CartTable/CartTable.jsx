@@ -1,7 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-const CartTable = ({ users, deleteID, editRow, mycarts }) => {
-    const totaluser = users.length;
+const CartTable = ({ deleteID, mycarts, editCart }) => {
     const totalcarts = mycarts.length;
 
 
@@ -20,30 +19,8 @@ const CartTable = ({ users, deleteID, editRow, mycarts }) => {
                     </tr>
                 </thead>
                 <tbody>
-                {/* {totaluser > 0 ? (
-                    users.map((user) => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.username}</td>
-                            <td>
-                                <button className={['btn', 'btn-info'].join(' ')} onClick={() => editRow(user)} >
-                                    Edit
-                                </button>
-                                <button onClick={() => deleteID(user.id)} className={['btn', 'btn-danger', 'ml-1'].join(' ')}>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))
-                ):(
-                    <tr>
-                        <td colSpan={4} className="text-center">No users</td>
-                    </tr>
-                ) */}
 
-
-{totalcarts > 0 ? (
+    {totalcarts > 0 ? (
                     mycarts.map((cart) => (
                         <tr key={cart.id*Math.random()}>
                             <td>{cart.id}</td>
@@ -53,7 +30,7 @@ const CartTable = ({ users, deleteID, editRow, mycarts }) => {
                             <td>{cart.qty}</td>
                             <td>{cart.qty*cart.price}</td>
                             <td>
-                                <button className={['btn', 'btn-info'].join(' ')} onClick={() => editRow(cart)} >
+                                <button className={['btn', 'btn-info'].join(' ')} onClick={() => editCart(cart)} >
                                     Edit
                                 </button>
                                 <button onClick={() => deleteID(cart.id)} className={['btn', 'btn-danger', 'ml-1'].join(' ')}>

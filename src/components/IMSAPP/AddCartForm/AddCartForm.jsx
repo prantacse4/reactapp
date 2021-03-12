@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import Select from "react-select";
 
-const AddCartForm = ({ addUser, category, products, addToCart }) => {
-    const initialFormState = { id: null, name: "", username: "" };
-    const [user, setUser] = useState(initialFormState);
-
-
+const AddCartForm = ({ category, products, addToCart }) => {
 
     const initialcartState = {id:null, category:"", product:"",price:"",qty:""};
     const [mycart, setMycart] = useState(initialcartState);
 
-    const initQty = {price:"",qty:""};
+    const initQty = {qty:""};
     const [Qty, setQty] = useState(initQty);
 
     const initPrice = {price:""};
@@ -22,20 +18,7 @@ const AddCartForm = ({ addUser, category, products, addToCart }) => {
     const [pro, setPro] = useState(null);
     const [ProductList, setProductList] = useState([]);
 
-    
 
-    // const handleInputChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setUser({ ...mycart, [name]: value });
-    // };
-    
-    // const handleFormSubmit = (event) => {
-    //     event.preventDefault();
-    //     if (!user.name || !user.username) return;
-    //     addUser(user);
-    //     setUser(initialFormState);
-    // };
-    
 
     const optionsCategory = category.map((cat) => ({
         label: cat.category,
@@ -46,6 +29,7 @@ const AddCartForm = ({ addUser, category, products, addToCart }) => {
         label: pro.product,
         value: pro.id,
         price:pro.price,
+        qty:pro.qty,
     }));
 
     const handleCategoryChange = (data) => {
@@ -74,7 +58,10 @@ const AddCartForm = ({ addUser, category, products, addToCart }) => {
         setPrice({...Price, price:proPrice});
         const addCat  = categoryHook.label;
         const addPro = data.label;
-        setMycart({...mycart, category:addCat, product:addPro, price:data.price, qty:0});
+
+
+        setQty({...Qty, qty:data.qty});
+        setMycart({...mycart, category:addCat, product:addPro, price:data.price, qty:data.qty});
 
       };
 

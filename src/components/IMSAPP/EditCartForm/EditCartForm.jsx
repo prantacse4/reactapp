@@ -2,44 +2,73 @@ import React, { useState, useEffect } from "react";
 
 const EditCartForm = (props) => {
     useEffect(() => {
-        setUser(props.currentUser)
+        setMycarts(props.CurrentCart)
       }, [props])
-    const [user, setUser] = useState(props.currentUser);
+    const [mycarts, setMycarts] = useState(props.CurrentCart);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
-    
-        setUser({ ...user, [name]: value })
+        setMycarts({ ...mycarts, [name]: value })
       }
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        props.updateUser(user.id, user);
-        props.setEditing(false);
+        props.updateCart(mycarts.id, mycarts);
+        props.setEditingCart(false);
     };
+
+    const handleaddcartform = (e) =>{
+        e.preventDefault();
+        props.setEditingCart(false);
+    };
+
     return (
         <div>
             <form onSubmit={handleFormSubmit}>
-                <label className="form-control-label">Name {user.name}</label>
+                <label className="form-control-label">Category</label>
                 <input
                     type="text"
                     className="form-control"
-                    name="name"
-                    value={user.name}
-                    onChange={handleInputChange}
+                    value={mycarts.category}
+                    readOnly
                 />
                 <label className={["form-control-label", "mt-3"].join(" ")}>
-                    Username {user.username}
+                    Product Name
                 </label>
                 <input
                     type="text"
                     className="form-control"
-                    name="username"
-                    value={user.username}
+                    value={mycarts.product}
+                    readOnly
+                />
+
+                <label className={["form-control-label", "mt-3"].join(" ")}>
+                    Price
+                </label>
+                <input
+                    type="text"
+                    className="form-control"
+                    name="price"
+                    value={mycarts.price}
                     onChange={handleInputChange}
+                    
+                />
+
+            <label className={["form-control-label", "mt-3"].join(" ")}>
+                    Quantity
+                </label>
+                <input
+                    type="text"
+                    className="form-control"
+                    name="qty"
+                    value={mycarts.qty}
+                    onChange={handleInputChange}
+                    
                 />
                 <button className={["btn", "btn-info", "mt-3"].join(" ")} >
                     Update
-                </button>
+                </button><span><button className={["btn", "btn-warning", "mt-3", "ml-2"].join(" ")} onClick={handleaddcartform} >
+                    Cancel
+                </button></span>
             </form>
         </div>
     );

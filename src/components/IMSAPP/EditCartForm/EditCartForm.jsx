@@ -5,7 +5,6 @@ const EditCartForm = (props) => {
         setMycarts(props.CurrentCart)
       }, [props])
     const [mycarts, setMycarts] = useState(props.CurrentCart);
-
     const handleInputChange = (event) => {
         const { name, value } = event.target
         setMycarts({ ...mycarts, [name]: value })

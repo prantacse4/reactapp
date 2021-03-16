@@ -33,7 +33,7 @@ const CartTable = ({ deleteID, mycarts, editCart }) => {
                                 <button className={['btn', 'btn-info'].join(' ')} onClick={() => editCart(cart)} >
                                     Edit
                                 </button>
-                                <button onClick={() => deleteID(cart.id)} className={['btn', 'btn-danger', 'ml-1'].join(' ')}>
+                                <button onClick={() => deleteID(cart.id, cart)} className={['btn', 'btn-danger', 'ml-1'].join(' ')}>
                                     Delete
                                 </button>
                             </td>

@@ -21,32 +21,30 @@ const ImsAppHome = () => {
     const [mycarts, setMycarts] = useState(mycart);
     const [myAllProducts, setmyAllProducts] = useState(products);
 
+    
 
 
     const addToCart = (mycartData) => {
         mycartData.id = mycarts.length + 1;
 
-        const  HavingData = myAllProducts.filter((products) => mycartData.product === products.product);
-        const havingID = HavingData[0].id;
-        const havingProduct = HavingData[0].product;
-        const havingPrice = HavingData[0].price;
-        let havingQty = HavingData[0].qty;
-        const havingCategory= HavingData[0].category;
-        const afterSubmitQty = HavingData[0].qty-mycartData.qty;
-        havingQty = afterSubmitQty;
-        const settingData = {id:havingID,product:havingProduct, category:havingCategory, price:havingPrice, qty:havingQty};
-        const findProductIndex = myAllProducts.findIndex((product) => product.id === havingID);
-        let AfterSubmitProducts = myAllProducts;
-        AfterSubmitProducts[findProductIndex] = settingData;
-        setmyAllProducts(AfterSubmitProducts);
+        
+
         setMycarts([...mycarts, mycartData]);
     };
 
 
-    const deleteData = (id) => {
+    const deleteData = (id, cartq) => {
         //Procedure 1
         const data = mycarts.filter((cart) => cart.id !== id);
-        setMycarts(data);
+        let AddedCartID = cartq.id;
+        let AddedCartCategory = cartq.category;
+        let AddedCartProduct = cartq.product;
+        let AddedCartQty = cartq.qty;
+        let  DeleteFromProductsINDEX = myAllProducts.findIndex((product) => product.id ===AddedCartID);
+        let  DeleteFromProducts = myAllProducts.filter((product) => product.id ===AddedCartID);
+        console.log("Cart ",cartq.qty);
+        console.log("Products ",DeleteFromProducts[0]);
+        // setMycarts(data);
 
         //Procedure 2
         // const cartIndex = mycarts.findIndex((mycart) => mycart.id === id);
@@ -102,7 +100,7 @@ const ImsAppHome = () => {
                         ) : (
                             <div>
                                 <h2>Add to Cart</h2>
-                                <AddCartForm  addToCart={addToCart} category={category} products={myAllProducts} />
+                                <AddCartForm  addToCart={addToCart} category={category} products={myAllProducts} myAllProducts={myAllProducts} />
                             </div>
                         )}
                     </div>

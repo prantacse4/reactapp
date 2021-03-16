@@ -30,15 +30,6 @@ const AddCartForm = ({ category, products, addToCart }) => {
     const [errors, setErrors] = useState({});
     let error ={};
 
-    // const ProData = myAllProducts.filter((product) => product.qty===0);
-    // if(ProData.length>0){
-    //     const Cdata = myAllProducts.filter((product) => product.qty!==0);
-    //     setmyAllProducts(Cdata);
-    // }
-
-    
-
-
 
     const optionsCategory = category.map((cat) => ({
         label: cat.category,
@@ -94,7 +85,7 @@ const AddCartForm = ({ category, products, addToCart }) => {
       };
 
 
-      const handleInputChange = (event) => {
+      const handleQtyChange = (event) => {
         const { name, value } = event.target;
         setQty({ ...Qty, [name]: value });
         const addQty = event.target.value;
@@ -120,7 +111,7 @@ const AddCartForm = ({ category, products, addToCart }) => {
         const { name, value } = data.target;
         setPrice({ ...Price, [name]: value });
         const addPrice = data.target.value;
-        setMycart({...mycart,  price:addPrice, qty:0});
+        setMycart({...mycart,  price:addPrice});
 
 
         if(addPrice<afSubPrice.price){
@@ -244,7 +235,7 @@ const AddCartForm = ({ category, products, addToCart }) => {
                     className="form-control"
                     name="qty"
                     value={Qty.qty}
-                    onChange={handleInputChange}
+                    onChange={handleQtyChange}
                 />
                 <button className={["btn", "btn-success", "mt-3"].join(" ")}>
                     Add

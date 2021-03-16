@@ -26,6 +26,10 @@ const ImsAppHome = () => {
 
     
 
+    const [editingCart, setEditingCart] = useState(false);
+    const initialCartState = { id: null, category: "", product: "", price:"", qty:"" };
+    const [CurrentCart, setCurrentCart] = useState(initialCartState);
+
 
     const addToCart = (mycartData) => {
         mycartData.id = mycarts.length + 1;
@@ -57,6 +61,12 @@ const ImsAppHome = () => {
         setmyAllProducts(AfterDeleteProducts); 
 
 
+        if(id === CurrentCart.id){
+            setEditingCart(false); 
+        }
+
+
+
 
         //Procedure 2
         // const cartIndex = mycarts.findIndex((mycart) => mycart.id === id);
@@ -68,9 +78,7 @@ const ImsAppHome = () => {
 
     };
 
-    const [editingCart, setEditingCart] = useState(false);
-    const initialCartState = { id: null, category: "", product: "", price:"", qty:"" };
-    const [CurrentCart, setCurrentCart] = useState(initialCartState);
+
 
  
 
@@ -80,13 +88,12 @@ const ImsAppHome = () => {
             id: cartdata.id,
             category: cartdata.category,
             product: cartdata.product,
+            product_id: cartdata.product_id,
             price: cartdata.price,
             qty: cartdata.qty,
         });
         
-        
     };
-
 
 
     const updateCart = (id, updatedCart) => {
@@ -107,6 +114,7 @@ const ImsAppHome = () => {
                                     setEditingCart={setEditingCart}
                                     CurrentCart={CurrentCart}
                                     updateCart={updateCart}
+                                    products={myAllProducts}
                                 />
                             </div>
                         ) : (
@@ -122,6 +130,7 @@ const ImsAppHome = () => {
                             mycarts={mycarts}
                             deleteID={deleteData}
                             editCart={editCart}
+                            
                         />
                     </div>
                 </div>

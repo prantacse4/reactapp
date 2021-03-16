@@ -18,17 +18,17 @@ const ImsAppHome = () => {
         {id:3, product:"Nokia 5",price:17500, qty:5, category:1},
         {id:4, product:"Canon 600D",price:48000, qty:6, category:2},
     ];
+
+    let productsCopy = [...products];
+    const [myAllProducts, setmyAllProducts] = useState(productsCopy);
+    const [myAllProductsOrginal, setmyAllProductsOrginal] = useState(products);
     const [mycarts, setMycarts] = useState(mycart);
-    const [myAllProducts, setmyAllProducts] = useState(products);
 
     
 
 
     const addToCart = (mycartData) => {
         mycartData.id = mycarts.length + 1;
-
-        
-
         setMycarts([...mycarts, mycartData]);
     };
 
@@ -36,15 +36,27 @@ const ImsAppHome = () => {
     const deleteData = (id, cartq) => {
         //Procedure 1
         const data = mycarts.filter((cart) => cart.id !== id);
-        // let AddedCartID = cartq.id;
-        // let AddedCartCategory = cartq.category;
-        // let AddedCartProduct = cartq.product;
-        // let AddedCartQty = cartq.qty;
-        // let  DeleteFromProductsINDEX = myAllProducts.findIndex((product) => product.id ===AddedCartID);
-        // let  DeleteFromProducts = myAllProducts.filter((product) => product.id ===AddedCartID);
-        // console.log("Cart ",cartq.qty);
-        // console.log("Products ",DeleteFromProducts[0]);
         setMycarts(data);
+        const inCartProduct_id = cartq.product_id;
+        const inCartProduct_qty = cartq.qty;
+
+        const DeletedProductsUpdateData = myAllProducts.filter((product) => product.id === inCartProduct_id);
+        const UpdatedQtyData = DeletedProductsUpdateData[0].qty;
+        const NewQty = parseInt(UpdatedQtyData)+ parseInt(inCartProduct_qty);
+        const UpdatedProductData = {
+            id:DeletedProductsUpdateData[0].id,
+            product:DeletedProductsUpdateData[0].product,
+            price:DeletedProductsUpdateData[0].price,
+            qty:NewQty,
+            category:DeletedProductsUpdateData[0].category,
+        };
+
+        const FindProductIndex = myAllProducts.findIndex((product) => product.id === inCartProduct_id);
+        let AfterDeleteProducts = myAllProducts;
+        AfterDeleteProducts[FindProductIndex] = UpdatedProductData;
+        setmyAllProducts(AfterDeleteProducts); 
+
+
 
         //Procedure 2
         // const cartIndex = mycarts.findIndex((mycart) => mycart.id === id);
@@ -100,7 +112,7 @@ const ImsAppHome = () => {
                         ) : (
                             <div>
                                 <h2>Add to Cart</h2>
-                                <AddCartForm  addToCart={addToCart} category={category} products={myAllProducts} myAllProducts={myAllProducts} />
+                                <AddCartForm  addToCart={addToCart} category={category} products={myAllProducts} />
                             </div>
                         )}
                     </div>

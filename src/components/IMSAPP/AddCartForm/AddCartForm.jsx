@@ -3,7 +3,7 @@ import Select from "react-select";
 
 const AddCartForm = ({ category, products, addToCart }) => {
 
-    const initialcartState = {id:null, category:"", product:"",price:"",qty:""};
+    const initialcartState = {id:null, category:"", product:"", product_id: "", price:"",qty:""};
     const [mycart, setMycart] = useState(initialcartState);
 
     //Set Qty=0 Products
@@ -27,16 +27,16 @@ const AddCartForm = ({ category, products, addToCart }) => {
     const [ProductList, setProductList] = useState([]);
 
     const [myAllProducts, setmyAllProducts] = useState(products);
-
     const [errors, setErrors] = useState({});
     let error ={};
 
-    const ProData = myAllProducts.filter((product) => product.qty===0);
+    // const ProData = myAllProducts.filter((product) => product.qty===0);
+    // if(ProData.length>0){
+    //     const Cdata = myAllProducts.filter((product) => product.qty!==0);
+    //     setmyAllProducts(Cdata);
+    // }
+
     
-    if(ProData.length>0){
-        const Cdata = myAllProducts.filter((product) => product.qty!==0);
-        setmyAllProducts(Cdata);
-    }
 
 
 
@@ -50,6 +50,7 @@ const AddCartForm = ({ category, products, addToCart }) => {
         value: pro.id,
         price:pro.price,
         qty:pro.qty,
+        product_id:pro.id,
     }));
 
 
@@ -60,7 +61,6 @@ const AddCartForm = ({ category, products, addToCart }) => {
         const productsdet = myAllProducts.filter((pro) => pro.category === dataID);
         const productCopy = [...productsdet];
         setProductList(productCopy);
-
         setPro(null); 
         setPrice(initPrice);
         setQty(initQty);
@@ -89,7 +89,7 @@ const AddCartForm = ({ category, products, addToCart }) => {
 
 
         setQty({...Qty, qty:data.qty});
-        setMycart({...mycart, category:addCat, product:addPro, price:data.price, qty:data.qty});
+        setMycart({...mycart, category:addCat, product:addPro, product_id:data.product_id, price:data.price, qty:data.qty});
 
       };
 
@@ -144,6 +144,7 @@ const AddCartForm = ({ category, products, addToCart }) => {
         const getPro = productSelectorView;
         const getPrice = Price.price;
         const getQty = Qty.qty;
+        
 
         if (!Price.price || !Qty.qty || !catSelectorView || !productSelectorView)return;
 
@@ -173,6 +174,20 @@ const AddCartForm = ({ category, products, addToCart }) => {
 
         
 
+        setErrors({});
+        setafSubQty({});
+        setafSubPrice({});
+        setMycart(initialcartState);
+        setPro(null); 
+        setPrice(initPrice);
+        setQty(initQty);
+        setcatSelectorView(null);
+        setproductSelectorView(null);
+        setCategory(null);
+        setProductList([]);
+    };
+
+    const setNullAll = (e) =>{
         setErrors({});
         setafSubQty({});
         setafSubPrice({});
@@ -233,7 +248,9 @@ const AddCartForm = ({ category, products, addToCart }) => {
                 />
                 <button className={["btn", "btn-success", "mt-3"].join(" ")}>
                     Add
-                </button>
+                </button> <span><button  onClick={setNullAll} className={["btn", "btn-info", "mt-3", "ml-2"].join(" ")}>
+                    Reset
+                </button></span>
             </form>
         </div>
     );

@@ -36,15 +36,15 @@ const ImsAppHome = () => {
     const deleteData = (id, cartq) => {
         //Procedure 1
         const data = mycarts.filter((cart) => cart.id !== id);
-        let AddedCartID = cartq.id;
-        let AddedCartCategory = cartq.category;
-        let AddedCartProduct = cartq.product;
-        let AddedCartQty = cartq.qty;
-        let  DeleteFromProductsINDEX = myAllProducts.findIndex((product) => product.id ===AddedCartID);
-        let  DeleteFromProducts = myAllProducts.filter((product) => product.id ===AddedCartID);
-        console.log("Cart ",cartq.qty);
-        console.log("Products ",DeleteFromProducts[0]);
-        // setMycarts(data);
+        // let AddedCartID = cartq.id;
+        // let AddedCartCategory = cartq.category;
+        // let AddedCartProduct = cartq.product;
+        // let AddedCartQty = cartq.qty;
+        // let  DeleteFromProductsINDEX = myAllProducts.findIndex((product) => product.id ===AddedCartID);
+        // let  DeleteFromProducts = myAllProducts.filter((product) => product.id ===AddedCartID);
+        // console.log("Cart ",cartq.qty);
+        // console.log("Products ",DeleteFromProducts[0]);
+        setMycarts(data);
 
         //Procedure 2
         // const cartIndex = mycarts.findIndex((mycart) => mycart.id === id);
